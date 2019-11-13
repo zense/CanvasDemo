@@ -1,0 +1,100 @@
+html, body{
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+img{
+    max-width: 15vh;
+    max-height: 15vw;
+}
+
+header{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+#title{
+    padding: 0;
+    margin: 0;
+    
+    position: relative;
+    
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: auto;
+    
+    background-color: rgba(238, 198, 160, 0.8);
+    text-align: center;
+    font-size: 7vh;
+}
+
+#ending{
+    padding: 0;
+    padding-top: 3.4vh;    
+    position: relative;
+
+    width: 100vw;
+    height: 10vh;
+    
+    background-color: rgba(238, 198, 160, 0.8);
+    text-align: center;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 3vh;
+}
+
+#label{
+    width: 100vw;
+    font-size: 5vh;
+    position: relative;
+    margin: 5vh;
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.guide{
+    font-size: 3.5vh;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 3vh;
+    margin: 0.1vh;
+}
+
+.card{
+    width: auto;
+    text-align: center;
+    border: 0px black;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.mr-auto{
+    padding-left: 5vw;
+}
+
+.ml-auto{
+    padding-right: 5vw;
+}
+
+@media (max-width: 768px){
+    #title{
+        font: Helvetica;
+        font-size: 5vw;
+    }
+
+}
