@@ -58,6 +58,7 @@ header{
 }
 
 .guide{
+    width: auto;
     font-size: 3.5vh;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -83,10 +84,6 @@ header{
     font-family: 'Ubuntu', sans-serif;
 }
 
-.mr-auto{
-    padding-left: 5vw;
-}
-
 .ml-auto{
     padding-right: 5vw;
 }
@@ -97,4 +94,8 @@ header{
         font-size: 5vw;
     }
 
+    .col-12{
+        padding: 0;
+        margin: 0;
+    }
 }
