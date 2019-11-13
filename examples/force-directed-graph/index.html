@@ -268,7 +268,7 @@
         global.offsetX += canvas.width / 2;
         global.offsetY += canvas.height / 2;
 
-        var N = 2;
+        var N = 4;
         for (var t = 0; t < N; t++) {
             // Clear forces
             for (var i = 0; i < global.balls.length; i++)
@@ -324,7 +324,7 @@
             var d = Math.sqrt((x - xx) * (x - xx) + (y - yy) * (y - yy));
             // console.log(i, d);
 
-            if (d <= global.balls[i].radius() * 3) {
+            if (d <= global.balls[i].radius() * 2) {
                 global.lastSelected = global.balls[i];
                 global.lastSelected.type = ballType.FOLLOW;
                 return;
