@@ -17,7 +17,7 @@ echo -e "\t<link href=\"https://fonts.googleapis.com/css?family=Ubuntu|ZCOOL+Qin
 echo -e "\t<body>\n\t\t<header id=\"title\" class=\"ml-auto mr-auto\"><img src=\"./zense.png\" alt=\"Zense\" /><br />HacKnight 2k19</header>\n" >> ./CanvasDemo/index.html
 
 echo -e "\t\t<label for=\"#links\" id=\"label\">Some examples for you to look at !</label>" >> ./CanvasDemo/index.html
-echo -e "\t\t<div class=\"col-12 col-md-9 ml-auto mr-auto\">" >> ./CanvasDemo/index.html
+echo -e "\t\t<div class=\"col-12 col-lg-9 ml-lg-auto mr-lg-auto\">" >> ./CanvasDemo/index.html
 
 echo -e "\n\t\t<div class=\"card border-0\">\n\t\t\t<div class=\"card-body\">\n\t\t\t<p class=\"guide mr-auto\">Click to view example</p>\n\t\t\t<p class=\"guide float-right\">Link to code</p>\n\t\t</div>\n\t\t</div>" >> ./CanvasDemo/index.html
 
@@ -36,7 +36,7 @@ git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'exampl
   git pull origin $branchName
   git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
   echo -e "\n\t\t<div class=\"card border-0\">" >> ../CanvasDemo/index.html
-  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:9} by ${authorName}</a> <br>" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:9}</a> <br>" >> ../CanvasDemo/index.html
   echo -e "\t\t\t\t<a href=\"https://github.com/zense/Canvas-Competition/tree/$branchName\" class=\"link ml-auto\" target=\"_blank\"><i class=\"fab fa-github\"></i></a><br>\n\t\t\t</div>" >> ../CanvasDemo/index.html
   echo -e "\t\t</div>" >> ../CanvasDemo/index.html
 done
