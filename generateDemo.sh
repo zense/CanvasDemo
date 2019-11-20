@@ -32,6 +32,7 @@ git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'exampl
   branchName=${tempRef%%__*}
   authorName=${branchRef#*__}
   echo "ref: "$tempRef 
+  echo $branchName
   git checkout $branchName
   git pull origin $branchName
   git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
