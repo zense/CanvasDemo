@@ -52,7 +52,7 @@ git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'HacKni
   git pull origin $branchName
   git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
   echo -e "\n\t\t<div class=\"card border-0\">" >> ../CanvasDemo/index.html
-  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:9}</a> <br>" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:13}</a> <br>" >> ../CanvasDemo/index.html
   echo -e "\t\t\t\t<a href=\"https://github.com/zense/Canvas-Competition/tree/$branchName\" class=\"link ml-auto\" target=\"_blank\"><i class=\"fab fa-github\"></i></a><br>\n\t\t\t</div>" >> ../CanvasDemo/index.html
   echo -e "\t\t</div>" >> ../CanvasDemo/index.html
 done
