@@ -42,6 +42,21 @@ git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'exampl
   echo -e "\t\t</div>" >> ../CanvasDemo/index.html
 done
 
+git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'HacKnight2K19/.*' | while read branchRef; do
+  tempRef=${branchRef#*refs/heads/}
+  branchName=${tempRef%%__*}
+  authorName=${branchRef#*__}
+  echo "ref: "$tempRef 
+  echo $branchName
+  git checkout $branchName
+  git pull origin $branchName
+  git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
+  echo -e "\n\t\t<div class=\"card border-0\">" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:9}</a> <br>" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t\t<a href=\"https://github.com/zense/Canvas-Competition/tree/$branchName\" class=\"link ml-auto\" target=\"_blank\"><i class=\"fab fa-github\"></i></a><br>\n\t\t\t</div>" >> ../CanvasDemo/index.html
+  echo -e "\t\t</div>" >> ../CanvasDemo/index.html
+done
+
 echo -e "\n\t\t</div>\n\t\t\t\n\t\t<br /><br /><br /><br /><br />\n\t\t<footer id=\"ending\">Zense 2019</footer></body>\n</html>" >> ../CanvasDemo/index.html
 
 cd ../CanvasDemo
