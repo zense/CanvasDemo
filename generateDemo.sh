@@ -43,6 +43,7 @@ git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'HacKni
   echo -e "\t\t</div>" >> ../CanvasDemo/index.html
 done
 
+
 git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'hacknight2019/.*' | while read branchRef; do
   tempRef=${branchRef#*refs/heads/}
   branchName=${tempRef%%__*}
