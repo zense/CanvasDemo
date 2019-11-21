@@ -16,31 +16,16 @@ echo -e "\t<link href=\"https://fonts.googleapis.com/css?family=Ubuntu|ZCOOL+Qin
 
 echo -e "\t<body>\n\t\t<header id=\"title\" class=\"ml-auto mr-auto\"><img src=\"./zense.png\" alt=\"Zense\" /><br />HacKnight 2k19</header>\n" >> ./CanvasDemo/index.html
 
-echo -e "\t\t<label for=\"#links\" id=\"label\">Some examples for you to look at !</label>" >> ./CanvasDemo/index.html
+echo -e "\t\t<label for=\"#links\" id=\"label\">Submissions at Zense HacKnight 2k19</label>" >> ./CanvasDemo/index.html
 echo -e "\t\t<div class=\"col-12 col-lg-9 ml-lg-auto mr-lg-auto\">" >> ./CanvasDemo/index.html
 
-echo -e "\n\t\t<div class=\"card border-0\">\n\t\t\t<div class=\"card-body\">\n\t\t\t<p class=\"guide mr-auto\">Click to view example</p>\n\t\t\t<p class=\"guide float-right\">Link to code</p>\n\t\t</div>\n\t\t</div>" >> ./CanvasDemo/index.html
+echo -e "\n\t\t<div class=\"card border-0\">\n\t\t\t<div class=\"card-body\">\n\t\t\t<p class=\"guide mr-auto\">Click to view submission</p>\n\t\t\t<p class=\"guide float-right\">Link to code</p>\n\t\t</div>\n\t\t</div>" >> ./CanvasDemo/index.html
 
 cd Canvas-Competition
 
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 git fetch --all
 git pull --all
-
-git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'examples/.*' | while read branchRef; do
-  tempRef=${branchRef#*refs/heads/}
-  branchName=${tempRef%%__*}
-  authorName=${branchRef#*__}
-  echo "ref: "$tempRef 
-  echo $branchName
-  git checkout $branchName
-  git pull origin $branchName
-  git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
-  echo -e "\n\t\t<div class=\"card border-0\">" >> ../CanvasDemo/index.html
-  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:9}</a> <br>" >> ../CanvasDemo/index.html
-  echo -e "\t\t\t\t<a href=\"https://github.com/zense/Canvas-Competition/tree/$branchName\" class=\"link ml-auto\" target=\"_blank\"><i class=\"fab fa-github\"></i></a><br>\n\t\t\t</div>" >> ../CanvasDemo/index.html
-  echo -e "\t\t</div>" >> ../CanvasDemo/index.html
-done
 
 git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'HacKnight2K19/.*' | while read branchRef; do
   tempRef=${branchRef#*refs/heads/}
@@ -52,7 +37,24 @@ git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'HacKni
   git pull origin $branchName
   git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
   echo -e "\n\t\t<div class=\"card border-0\">" >> ../CanvasDemo/index.html
-  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">${branchName:13}</a> <br>" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">Submission: ${branchName:14}</a> <br>" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t\t<a href=\"https://github.com/zense/Canvas-Competition/tree/$branchName\" class=\"link ml-auto\" target=\"_blank\"><i class=\"fab fa-github\"></i></a><br>\n\t\t\t</div>" >> ../CanvasDemo/index.html
+  echo -e "\t\t</div>" >> ../CanvasDemo/index.html
+done
+
+echo -e "\n\t\t\t<p class=\"guide2 mr-auto\">Click to view example</p>\n\t\t\t<span style=\"display:'block'; height: 5vh;\"></span><hr/>" >> ../CanvasDemo/index.html
+
+git for-each-ref --format='%(refname)__%(authorname)' refs/heads/ | grep 'examples/.*' | while read branchRef; do
+  tempRef=${branchRef#*refs/heads/}
+  branchName=${tempRef%%__*}
+  authorName=${branchRef#*__}
+  echo "ref: "$tempRef 
+  echo $branchName
+  git checkout $branchName
+  git pull origin $branchName
+  git archive --format=tar --prefix="$branchName/" "$branchName" | tar -C../CanvasDemo -x
+  echo -e "\n\t\t<div class=\"card border-0\">" >> ../CanvasDemo/index.html
+  echo -e "\t\t\t<div class=\"card-body\">\n\t\t\t\t<a href=\"./$branchName/index.html\" class=\"link mr-auto\" target=\"_blank\">Example: ${branchName:9}</a> <br>" >> ../CanvasDemo/index.html
   echo -e "\t\t\t\t<a href=\"https://github.com/zense/Canvas-Competition/tree/$branchName\" class=\"link ml-auto\" target=\"_blank\"><i class=\"fab fa-github\"></i></a><br>\n\t\t\t</div>" >> ../CanvasDemo/index.html
   echo -e "\t\t</div>" >> ../CanvasDemo/index.html
 done
@@ -61,4 +63,3 @@ echo -e "\n\t\t</div>\n\t\t\t\n\t\t<br /><br /><br /><br /><br />\n\t\t<footer i
 
 cd ../CanvasDemo
 git add .
-git commit -m "Updated the frontend and the script" && git push -u origin master
