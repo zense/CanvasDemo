@@ -1,0 +1,233 @@
+<html>
+
+<body onload="canvas.setup()">
+
+    <canvas id="canvasArea1" style="position: absolute; left: 0; top: 0; z-index: 0; width:100%;height:100%"></canvas>
+
+    <canvas id="canvasArea2" style="visibility: hidden; position: absolute; left: 0; top: 0; z-index: 0; width:100%;height:100%"></canvas>
+    
+    <script src="./canvas1.js"></script>
+
+</body>
+
+</html>
+<script>
+
+    // Declare all global variables here
+    function setup() {
+        // Initialize variables here
+    }
+
+    // Declare custom functions here
+
+
+    // Function while will be called repeatedly 
+    
+    function setup()
+    {
+        canvas.activateDoubleBuffer();
+    }
+    obs_x=1000;
+    obs_y=500;
+    block_width=100;
+    block_height=89;
+    obs_width=100;
+    obs_height=100;
+    block_y=500;
+    block_x=450;
+    speed=10;
+    points=0;
+    water_balls=10;
+    ball_width=50;
+    ball_height=50;
+    obs_y=Math.floor((Math.random()*600) + 40);
+    var frame_delay=0
+    var images=["1.png","2.png","3.png","4.png"];
+    var coins=["coin1.png","coin2.png","coin3.png","coin4.png","coin5.png","coin6.png"];
+    var i=0;var j=0; 
+    ball_radius=20;
+    ball_x=block_x+ball_radius;
+    ball_y=block_y;
+    speed_ball=25;
+    ball_signal=0;
+    coin_width=54;
+    coin_height=62;
+    coin_x=1300;
+    coin_y=Math.floor((Math.random()*600) + 40);
+    coin_display_signal=0;
+    coin_frame_delay=0;
+    coin_speed=10;
+    frame_delay_coin=0
+    count=0;
+    
+    function main() {
+
+        //canvas.activateDoubleBuffer();
+        //canvas.clear();
+        canvas.drawImg("background.jpg",10,40,1300,730)
+        //canvas.drawImg("tree.png",300,200,459,536);
+        //canvas.drawRectangle(block_x,block_y,100,100); //main block
+        //canvas.drawRectangle(obs_x,obs_y,100,100);
+        //canvas.drawImg(coins[j],500,400,coin_width,coin_height);
+        j+=1;
+        if (j==6)
+            j=0;
+            
+        canvas.drawImg(images[i],block_x,block_y,block_width,block_height);
+        frame_delay+=1;
+        count+=1;
+        coin_frame_delay+=1;
+        frame_delay_coin+=1;
+        
+
+
+        if (frame_delay==10)
+        {
+          i+=1;
+          if (i==4)
+              i=0;
+          frame_delay=0;
+        }
+        
+        
+
+        if (coin_display_signal==1)
+        {
+            canvas.drawImg(coins[j],coin_x,coin_y,coin_width,coin_height);
+        }
+        
+
+
+        canvas.drawImg("fireball.png",obs_x,obs_y,obs_width,obs_height);
+        
+
+        obs_x-=speed;
+        if (count%60==0)
+            points+=1;
+        ball_x+=speed_ball;
+        coin_x-=coin_speed;
+        
+
+        if (coin_x<-coin_width)
+        {
+            coin_display_signal=0;
+        }
+        
+
+        canvas.drawText(600,30,"Points: "+points,fontSize=30);
+        canvas.drawText(900,30,"Press S to shoot",fontSize=30);
+        canvas.drawText(200,30,"Waterballs remaining: "+water_balls,fontSize=30);
+        console.log(points);
+        //canvas.drawImg("waterball.png",100,100,100,100);
+        
+
+
+        if (ball_signal==1 && water_balls>0)
+            canvas.drawImg("waterball.png",ball_x,ball_y,ball_width,ball_height);
+        
+
+        if (obs_x<-obs_width)
+        {
+            obs_x=1300;
+            speed+=1;
+            obs_y=Math.floor((Math.random()*600) + 40);
+        }
+        
+
+
+        if ((obs_x<block_x+block_width-10 && obs_x>block_x-obs_width) && (block_y<obs_y+obs_height && block_y>obs_y-block_height+10))
+        {
+            alert("Crash!!!\nYour Score: "+(points-1));
+            points=0;
+            speed=10;
+            //setTimeout(3000);
+            obs_x=1000;
+            obs_y=500;
+            block_y=500;
+            block_x=450;
+            water_balls=5;
+        }
+        
+
+
+        if ((obs_x<ball_x+ball_width-10 && obs_x>ball_x-obs_width) && (ball_y<obs_y+obs_height && ball_y>obs_y-ball_height+10) && water_balls>0)
+        {
+            obs_y=Math.floor((Math.random()*600) + 40);
+            obs_x=1300;
+            canvas.drawImg("fireball.png",obs_x,obs_y,obs_width,obs_height);
+            ball_signal=0;
+        }
+
+
+        if ((coin_x<block_x+block_width-10 && coin_x>block_x-coin_width) && (block_y<coin_y+coin_height && block_y>coin_y-block_height+10))
+        {
+            points+=5;
+            coin_display_signal=0;
+        }
+        
+
+
+        if (frame_delay_coin%100==0)
+        {
+               coin_x=1300;
+               coin_y=Math.floor((Math.random()*(600-250) + 40))+250;
+               canvas.drawImg(coins[j],coin_x,coin_y,coin_width,coin_height);
+               coin_display_signal=1;
+        }
+
+        
+
+
+        canvas.keyDownCallback=function(e)
+        {
+            if (e.which===38){
+                if (block_y>0)
+                   block_y-=20;
+            }
+            else if (e.which==40)
+            {
+                if (block_y<650)
+                    block_y+=20
+            }
+            else if (e.which==39 || ((e.which==38 || e.which==40) && e.which==39))
+              {  
+                if (block_x<1300-block_width)
+                    block_x+=20;
+              }
+            else if (e.which==37 || ((e.which==38 || e.which==40) && e.which==37))
+             {
+                if (block_x>450)
+                    block_x-=20;
+            }
+            else if (e.which===32)
+            {
+                alert("Game Paused!!!");
+            }
+            else if (e.which==83)
+            {
+                ball_x=block_x+ball_radius;
+                ball_y=block_y;
+                if (water_balls>0)
+                {
+                    canvas.drawImg("waterball.png",ball_x,ball_y,ball_width,ball_height);
+                    water_balls-=1;
+                }
+                ball_signal=1;
+            }
+
+        }
+
+    canvas.update();
+
+        
+    }
+
+    // Override functions here; 
+    canvas.mainFunction = main;
+    canvas.setupFunction = setup;
+
+    var timeStep = 25;
+    canvas.startMain(timeStep);
+    canvas.setupFunction = setup;
+
+</script>
